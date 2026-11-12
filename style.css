@@ -129,35 +129,190 @@ body {
     background: #f8f9fa;
 }
 
-/* CATEGORY GROUPS */
-.category-section {
-    margin-bottom: 2rem;
+/* Lets the table scroll sideways on a phone instead of breaking the page */
+.table-wrapper {
+    overflow-x: auto;
 }
 
+.table-wrapper:focus-visible {
+    outline: 3px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+.restaurant-table {
+    min-width: 720px;
+}
+
+.restaurant-table caption {
+    text-align: left;
+    font-weight: 600;
+    font-size: 1.1rem;
+    padding-bottom: 0.5rem;
+}
+
+.caption-hint {
+    display: block;
+    font-weight: normal;
+    font-size: 0.875rem;
+    color: #666;
+}
+
+/* Business names are row headers: keep them bold but left-aligned like the other cells */
+.restaurant-table tbody th {
+    background: none;
+    font-weight: 600;
+}
+
+.sort-button {
+    background: none;
+    border: none;
+    padding: 0;
+    font: inherit;
+    font-weight: 600;
+    color: inherit;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.sort-button:hover {
+    color: var(--primary-color);
+}
+
+.sort-button:focus-visible {
+    outline: 3px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+.sort-arrow {
+    font-size: 0.75rem;
+    color: #666;
+}
+
+/* "Newer inspection ... result pending" note under the date */
+.pending-note {
+    display: block;
+    margin-top: 0.3rem;
+    font-size: 0.8rem;
+    font-style: italic;
+    color: #555;
+}
+
+/* Inspection result badges: colour + symbol + text */
+.result-badge {
+    display: inline-flex;
+    gap: 0.35rem;
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+    font-size: 0.875rem;
+    border: 1px solid;
+}
+
+.result-good    { background: #e6f4ea; color: #1e5e2f; border-color: #8cc79b; }
+.result-warning { background: #fff4d6; color: #7a4f00; border-color: #e6bf5c; }
+.result-bad     { background: #fde7e7; color: #8a1c1c; border-color: #e59a9a; }
+.result-missing { background: #f0f0f0; color: #555;    border-color: #c8c8c8; }
+
+/* CATEGORY GROUPS */
+.category-summary {
+    margin: 0 0 1.5rem;
+    color: #555;
+}
+
+.category-section {
+    margin-bottom: 1.25rem;
+}
+
+/* Group header: the stats for the whole group */
 .category-header {
     background: var(--primary-color);
     color: white;
-    padding: 1rem;
+    padding: 1rem 1.25rem;
     margin: 0;
     border-radius: 8px 8px 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 1.5rem;
 }
 
+.category-header h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    flex: 1 1 200px;
+}
+
+.category-stat {
+    margin: 0;
+    white-space: nowrap;
+}
+
+.category-stat-muted {
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+.stat-value {
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+/* Bar showing % compliant. The number next to it says the same thing in text. */
+.compliance-meter {
+    width: 140px;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.35);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.compliance-meter span {
+    display: block;
+    height: 100%;
+    background: white;
+}
+
+/* The individual inspections inside a group: plainer and indented */
 .category-items {
     border: 1px solid var(--border-color);
     border-top: none;
     border-radius: 0 0 8px 8px;
 }
 
-.category-item {
-    padding: 1rem;
-    border-bottom: 1px solid #eee;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.category-items summary {
+    padding: 0.75rem 1.25rem;
+    cursor: pointer;
+    color: var(--primary-color);
+    font-weight: 600;
 }
 
-.category-item:last-child {
-    border-bottom: none;
+.category-items summary:focus-visible {
+    outline: 3px solid var(--primary-color);
+    outline-offset: -3px;
+}
+
+.category-items ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.category-item {
+    padding: 0.75rem 1.25rem 0.75rem 2.25rem;
+    border-top: 1px solid #eee;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem 1rem;
+    font-size: 0.95rem;
+}
+
+.item-date {
+    display: block;
+    font-size: 0.85rem;
+    color: #666;
 }
 
 /* STATS LAYOUT */
@@ -204,6 +359,24 @@ body {
 
 .chart-figure canvas {
     max-width: 100%;
+}
+
+/* Chart.js fills this box, so the box sets each chart's height */
+.chart-box {
+    position: relative;
+    width: 100%;
+}
+
+.chart-box-donut {
+    height: 380px;
+}
+
+/* Says what's highlighted when hovering a bar or slice (also read out by screen readers) */
+.chart-link-status {
+    margin: 1rem 0 0;
+    padding: 0.75rem 1rem;
+    background: #f1f6fa;
+    border-left: 4px solid var(--primary-color);
 }
 
 /* The text alternative under each chart */
